@@ -8,18 +8,6 @@ import (
 	"time"
 )
 
-/*
-SERVICES
-https://fixer.io/
-https://currencylayer.com/
-https://exchangeratesapi.io/
-https://currencyapi.com/
-https://www.abstractapi.com/
-https://currency.getgeoapi.com/
-https://openexchangerates.org/
-https://www.exchangerate-api.com/
-*/
-
 func saveHistory(cur string) {
 	fmt.Println(cur)
 }
