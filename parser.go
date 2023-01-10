@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"github.com/joho/godotenv"
 	"io/ioutil"
 	"net/http"
+	"os"
 )
 
 /*
@@ -19,9 +21,10 @@ https://www.exchangerate-api.com/
 */
 
 func getFixer() string {
-	apiKey := "YOUR_API_KEY"
-	//url := "http://data.fixer.io/api/latest?access_key=" + apiKey
-	url := fmt.Sprintf("http://data.fixer.io/api/latest?access_key=%s", apiKey)
+	err := godotenv.Load("configs/api.env")
+	checkErr(err)
+	apiKey := os.Getenv("FIXER_API_KEY")
+	url := fmt.Sprintf("http://data.fixer.io/api/latest?access_key=%s&symbols=EUR,GBP,CAD,AUD,CHF", apiKey)
 	resp, err := http.Get(url)
 	if err != nil {
 		fmt.Println(err)
@@ -31,6 +34,12 @@ func getFixer() string {
 		fmt.Println(err)
 	}
 	return string(respBody)
+}
+
+func checkErr(err error) {
+	if err != nil {
+		fmt.Println(err)
+	}
 }
 
 func main() {
