@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option go_package = "demo-grpc/proto";
+
+message GetCurrencyRequest {
+  string currency = 1;
+}
+
+message GetCurrencyResponse {
+  string currencyRates = 1;
+}
+
+service CurrencyService {
+  rpc GetCurrency(GetCurrencyRequest) returns (GetCurrencyResponse) {}
+}
